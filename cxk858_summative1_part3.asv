@@ -1,0 +1,79 @@
+%% OTSU default method
+
+img = imread('cells.png');
+gray_img = rgb2gray(img);
+level = graythresh(gray_img);
+defaultMethod = imbinarize(gray_img, level);
+imshowpair(gray_img, defaultMethod, 'montage');
+
+%% pre-processing
+
+imageSize = size(gray_img)
+output_template = zeros(imageSize(1), imageSize(2));
+min_output = output_template;
+max_output = output_template;
+mean_output = output_template;
+median_output = output_template;
+
+padded = padarray(gray_img, [2 2]);
+
+for i = 2:imageSize(1)+1
+    for j = 2:imageSize(2)+1
+        window=padded(i-1:i+1, j-1:j+1);
+        flatten = window(:);
+
+        min_output(i-2,j-2) = min(flatten);
+        max_output(i-2,j-2) = max(flatten);
+        mean_output(i-2,j-2) = mean(flatten);
+        median_output(i-2,j-2) = median(flatten);
+        
+    end
+end
+
+min_output = uint8(min_output);
+max_output = uint8(max_output);
+mean_output = uint8(mean_output);
+median_output = uint8(median_output);
+
+figure;
+sgtitle('Solution of Task 2.1.2');
+subplot(1,5,1);
+imshow(img_gaussian_noise);
+title('Image with Gaussian noise');
+
+subplot(1,5,2);
+imshow(gaussian_min_output);
+title('Gaussian noise 5x5 min filter');
+
+subplot(1,5,3);
+imshow(max_output);
+title('Gaussian noise 5x5 max filter');
+
+subplot(2,5,4);
+imshow(mean_output);
+title('Gaussian noise 5x5 mean filter');
+
+subplot(2,5,5);
+imshow(gaussian_median_output);
+title('Gaussian noise 5x5 med filter');
+
+subplot(2,5,6);
+imshow(img_saltpepper_noise);
+title('Image with Salt & Pepper noise');
+
+subplot(2,5,7);
+imshow(sp_min_output);
+title('Salt & Pepper noise 5x5 min filter');
+
+subplot(2,5,8);
+imshow(sp_max_output);
+title('Salt & Pepper noise 5x5 max filter');
+
+subplot(2,5,9);
+imshow(sp_mean_output);
+title('Salt & Pepper noise 5x5 mean filter');
+
+subplot(2,5,10);
+imshow(sp_median_output);
+title('Salt & Pepper noise 5x5 med filter');
+pause(1);
