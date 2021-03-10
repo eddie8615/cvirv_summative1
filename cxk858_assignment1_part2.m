@@ -138,3 +138,4 @@ matchedNoisePoints = noisePoints(featurePairs(:,1),:);
 matchedDenoisePoints = denoisePoints(featurePairs(:,2),:);
 figure;
 showMatchedFeatures(img_saltpepper_noise, sp_median_output, matchedNoisePoints, matchedDenoisePoints,'montage');
+
