@@ -8,7 +8,7 @@ level = graythresh(gray);
 
 otsu = imbinarize(gray, level);
 figure;
-imshowpair(gray, otsu, 'montage');
+imshowpari(
 title('OTSU method');
 
 % pre-processing for edge detection
