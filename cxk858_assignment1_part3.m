@@ -16,7 +16,7 @@ title('OTSU method');
 filter3 = imgaussfilt(gray, 3);
 filter05 = imgaussfilt(gray);
 
-% apply 
+% apply imadust and adapthisteq and will figure out which one is the best
 adjust3 = imadjust(filter3);
 adjust05 = imadjust(filter05);
 adapthist3 = adapthisteq(filter3);
@@ -82,3 +82,7 @@ title('Used adapthisteq and gaussian filter (sig:0.5)');
 % imshowpair(otsu, edge_sobel, 'montage');
 
 % Winner is sobel_adjust3
+
+%% Question 3.2
+
+preOtsu = graythresh(adjust3);

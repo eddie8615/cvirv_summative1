@@ -8,7 +8,7 @@ level = graythresh(gray);
 
 otsu = imbinarize(gray, level);
 figure;
-imshowpari(
+imshowpair(gray, otsu, 'montage');
 title('OTSU method');
 
 % pre-processing for edge detection
@@ -16,7 +16,7 @@ title('OTSU method');
 filter3 = imgaussfilt(gray, 3);
 filter05 = imgaussfilt(gray);
 
-% apply 
+% apply imadust and adapthisteq and will figure out which one is the best
 adjust3 = imadjust(filter3);
 adjust05 = imadjust(filter05);
 adapthist3 = adapthisteq(filter3);
@@ -80,3 +80,5 @@ subplot(2,2,4);
 imshow(canny_overlay4);
 title('Used adapthisteq and gaussian filter (sig:0.5)');
 % imshowpair(otsu, edge_sobel, 'montage');
+
+% Winner is sobel_adjust3
