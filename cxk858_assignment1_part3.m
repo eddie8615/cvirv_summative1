@@ -80,3 +80,5 @@ subplot(2,2,4);
 imshow(canny_overlay4);
 title('Used adapthisteq and gaussian filter (sig:0.5)');
 % imshowpair(otsu, edge_sobel, 'montage');
+
+% Winner is sobel_adjust3
